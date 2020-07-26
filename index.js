@@ -9,12 +9,23 @@ client.on('ready', () => {
  console.log(`Logged in as ${client.user.tag}!`);
  client.channels.cache.forEach(t => channels.push(t));
  console.log(channels);
- });
+});
 
 client.on('message', msg => {
  if (msg.content === 'ping') {
  msg.channel.send('pong');
  console.log(msg);
+}
+if (msg.content === 'stop') {
+    clearInterval(roamTimer);
+    msg.channel.send('timer cleared');
+    console.log('cleared roam timer');
+   }
+
+if (msg.content === 'start') {
+    var roamTimer =setInterval(roam, 10000);
+    msg.channel.send('timer started');
+    console.log('timer started');
 }
 
  if (msg.content.startsWith(`${prefix}`)) {
@@ -37,7 +48,19 @@ if(msg.content === 'cuteness'){
 });
 
 client.login(token);
+// var roamTimer =setInterval(roam, 10000);
 
+function roam(){
+    try{
+    var rand = randomInt(0,channels.length);
+    if(channels[rand].type=='text'){
+        channels[rand].send(`hellooooo ${channels[rand].name}, I have arrived here randomly`)
+    } 
+    } catch(err){
+        console.log(err);
+    }
+    
+}
 
 function embed(msg,url){
     console.log('starting embed creation')
@@ -52,6 +75,8 @@ function embed(msg,url){
     msg.channel.send(embed);
 }
 
-
+function randomInt(low, high) {
+  return Math.floor(Math.random() * (high - low) + low)
+}
 
 
