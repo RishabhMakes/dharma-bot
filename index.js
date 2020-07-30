@@ -12,6 +12,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+    msg.content=msg.content.toLowerCase();
+    
  if (msg.content === 'ping') {
  msg.channel.send('pong');
  console.log(msg);
@@ -28,23 +30,29 @@ if (msg.content === 'start') {
     console.log('timer started');
 }
 
-if (msg.content.startsWith(`${prefix}`)) {
-    msg.reply('ruff ruff');
+if (msg.content.includes("dharma")) {
+    msg.channel.send('🐾 woof woof!');
     }
 // console.log(msg.author.username) 
 
 if(!msg.author.bot && msg.content === 'hey dharma'){
     msg.reply('Hey '+ msg.author.username);
     msg.react('❤️');
-    channels[4].send(`hellooooo channel ${channels[4].name}`);
+    // channels[4].send(`hellooooo channel ${channels[4].name}`);
 }
 
-if(msg.content === 'cuteness'){
+if(msg.content.includes('🍕')){
+    msg.channel.send('🥺');
+}
+
+if(msg.content.includes('good') && (msg.content.includes('boi') || msg.content.includes('boy') || msg.content.includes('girl')|| msg.content.includes('gurl'))){
     giphy.random('doggo', function (err, res) {
         console.log(res.data.image_url);
         embed(msg,res.data.image_url);
     });
 }
+
+randomPoop(msg);
 
 });
 
@@ -56,7 +64,8 @@ function roam(){
     var rand = randomInt(0,channels.length);
     if(channels[rand].type=='text'){
         // channels[rand].send(`hellooooo ${channels[rand].name}, I have arrived here randomly`);
-        channels[rand].send('💩');
+        channels[rand].send('🐾'); 
+        // channels[rand].send('💩');
     } 
     } catch(err){
         console.log(err);
@@ -80,4 +89,24 @@ function randomInt(low, high) {
   return Math.floor(Math.random() * (high - low) + low)
 }
 
+function randomPoop(msg){
+    if(Math.random()<0.02){
+        msg.react('💩');
+    }
 
+    if(Math.random()<0.02){
+        msg.react('❤️');
+    }
+}
+
+//THIS CODE CAN BE USED TO WAIT FOR REACTIONS
+
+// const filter = (reaction, user) => {
+// 	return reaction.emoji.name === '🍕' && user.id === message.author.id;
+// };
+
+// message.awaitReactions(filter, { max: 4, time: 60000, errors: ['time'] })
+// 	.then(collected => console.log(collected.size))
+// 	.catch(collected => {
+// 		console.log(`After a minute, only ${collected.size} out of 4 reacted.`);
+// 	});
