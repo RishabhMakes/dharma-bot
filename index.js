@@ -28,13 +28,14 @@ if (msg.content === 'start') {
     console.log('timer started');
 }
 
- if (msg.content.startsWith(`${prefix}`)) {
+if (msg.content.startsWith(`${prefix}`)) {
     msg.reply('ruff ruff');
     }
 // console.log(msg.author.username) 
 
 if(!msg.author.bot && msg.content === 'hey dharma'){
     msg.reply('Hey '+ msg.author.username);
+    msg.react('❤️');
     channels[4].send(`hellooooo channel ${channels[4].name}`);
 }
 
@@ -54,12 +55,12 @@ function roam(){
     try{
     var rand = randomInt(0,channels.length);
     if(channels[rand].type=='text'){
-        channels[rand].send(`hellooooo ${channels[rand].name}, I have arrived here randomly`)
+        // channels[rand].send(`hellooooo ${channels[rand].name}, I have arrived here randomly`);
+        channels[rand].send('💩');
     } 
     } catch(err){
         console.log(err);
     }
-    
 }
 
 function embed(msg,url){
