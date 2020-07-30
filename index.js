@@ -25,13 +25,14 @@ if (msg.content === 'stop') {
    }
 
 if (msg.content === 'start') {
-    var roamTimer =setInterval(roam, 10000);
+    var roamTimer =setInterval(roam, 1000000);
     msg.channel.send('timer started');
     console.log('timer started');
 }
 
 if (msg.content.includes("dharma")) {
     msg.channel.send('🐾 woof woof!');
+    msg.react('❤️');
     }
 // console.log(msg.author.username) 
 
@@ -43,6 +44,10 @@ if(!msg.author.bot && msg.content === 'hey dharma'){
 
 if(msg.content.includes('🍕')){
     msg.channel.send('🥺');
+}
+
+if(msg.content.includes('dharma') && msg.content.includes('help')){
+    embedHelp(msg);
 }
 
 if(msg.content.includes('good') && (msg.content.includes('boi') || msg.content.includes('boy') || msg.content.includes('girl')|| msg.content.includes('gurl'))){
@@ -80,6 +85,26 @@ function embed(msg,url){
 	.setDescription('Woof woof I am learning to post GIFs')
 	.setImage(url)
 	.setTimestamp()
+	// Send the embed to the same channel as the message
+    console.log(embed);
+    msg.channel.send(embed);
+}
+
+function embedHelp(msg){
+    console.log('starting help embed creation')
+    const embed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+	.setTitle('What can I do?')
+	.setDescription('I can do a few things, here they are!')
+	.addFields(
+        { name: '\u200B', value: '\u200B' },
+        { name: 'Roaming around', value: 'I just hang out in IDC and chill in studios' },
+        { name: 'Call me a good girl', value: 'I bless you with GIF goodness' },
+        { name: 'Ping', value: 'You say Ping, I say Pong', inline: true },
+        { name: 'Hey Dharma', value: 'You say Hey, I say Hey!', inline: true },
+		{ name: 'You have Pizza 🍕', value: 'I come around asking', inline: true },
+	)
+    .setFooter('I am still finding my voice. Stick around! Till then, go meet my hooman help @rishabhmakes');
 	// Send the embed to the same channel as the message
     console.log(embed);
     msg.channel.send(embed);
