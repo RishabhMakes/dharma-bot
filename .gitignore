@@ -1,2 +1,8 @@
-config.json
-how to run
+# node_modules can contain platform-dependent code
+# they can be installed from the package.json directly, uploading the entire folder is unnecessary
+/node_modules/
+
+# bot configuration
+/config.json
+
+# how to run
