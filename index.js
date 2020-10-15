@@ -62,7 +62,7 @@ randomPoop(msg);
 });
 
 client.login(token);
-// var roamTimer =setInterval(roam, 10000);
+var roamTimerDef =setInterval(roam, 1000000);
 
 function roam(){
     try{
@@ -71,6 +71,9 @@ function roam(){
         // channels[rand].send(`hellooooo ${channels[rand].name}, I have arrived here randomly`);
         channels[rand].send('🐾'); 
         // channels[rand].send('💩');
+        console.log("raid success");
+    } else{
+        console.log("raid unsuccesful");
     } 
     } catch(err){
         console.log(err);
@@ -104,7 +107,7 @@ function embedHelp(msg){
         { name: 'Hey Dharma', value: 'You say Hey, I say Hey!', inline: true },
 		{ name: 'You have Pizza 🍕', value: 'I come around asking', inline: true },
 	)
-    .setFooter('I am still finding my voice. Stick around! Till then, go meet my hooman help @rishabhmakes');
+    .setFooter('I am still finding my voice. Stick around! Till then, go meet my hooman help @rishabhmakes. Oh, and sometimes I randomly poop on stuff');
 	// Send the embed to the same channel as the message
     console.log(embed);
     msg.channel.send(embed);
