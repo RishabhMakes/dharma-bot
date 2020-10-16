@@ -1,0 +1,30 @@
+name: Deploy to VPS
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Install dependencies
+      run: npm i
+  update:
+    name: Update
+    runs-on: ubuntu-18.04
+    needs: [build]
+    steps:
+    - name: Run script on VPS
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        debug: true
+        script_stop: true
+        script: |
+          cd ~/dharma-bot/
+          pm2 stop dharma-bot
+          git pull
+          npm i
+          pm2 start index.js --name dharma-bot
