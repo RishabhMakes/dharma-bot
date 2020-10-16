@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { prefix, token, giphy_key } = require('./config.json');
+const { prefix, token, giphy_key, confessionID } = require('./config.json');
 const fetch = require('node-fetch');
 const giphy = require('giphy-api')(giphy_key);
 const client = new Discord.Client();
@@ -15,7 +15,7 @@ client.on('ready', () => {
     client.channels.cache.forEach(t => channels.push(t));
     console.log(channels);
     channels.forEach(t => {
-        if(t.name=="confessions"){
+        if(t.id==confessionID){
             confessionsChannels.push(t);
         }
     });
