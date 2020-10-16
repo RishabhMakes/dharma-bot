@@ -9,4 +9,4 @@ Making a fun little bot that replicates our beloved department pet's behaviour o
 - Clone the repository with `git clone` or through a GUI like Github Desktop
 - Set your `prefix`, `token` and `giphy_key` in the `config.json` file.
 - Run `npm install` to install all dependencies.
-- Run `node main` to start the bot.
+- Run `node index.js` to start the bot.
