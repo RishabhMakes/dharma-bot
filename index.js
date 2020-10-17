@@ -74,7 +74,7 @@ client.on('message', msg => {
 });
 
 client.login(token);
-var roamTimerDef =setInterval(roam, 1000000);
+var roamTimerDef =setInterval(roam, 10000000);
 
 function roam() {
     try {
